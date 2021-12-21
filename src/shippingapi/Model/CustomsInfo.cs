@@ -28,8 +28,58 @@ namespace shippingapi.Model
     /// CustomsInfo
     /// </summary>
     [DataContract]
-    public partial class CustomsInfo :  IEquatable<CustomsInfo>, IValidatableObject
+    public partial class CustomsInfo : IEquatable<CustomsInfo>, IValidatableObject
     {
+        /// <summary>
+        /// Defines BusinessType
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BusinessTypeEnum
+        {
+            /// <summary>
+            /// Enum B2B for value: VAB2BT_NUMBER
+            /// </summary>
+            [EnumMember(Value = "B2B")]
+            B2B = 1,
+
+            /// <summary>
+            /// Enum B2C  for value: B2C 
+            /// </summary>
+            [EnumMember(Value = "B2C ")]
+            B2C = 2,
+        }
+        /// <summary>
+        /// Gets or Sets BusinessType
+        /// </summary>
+        [DataMember(Name = "businessType", EmitDefaultValue = false)]
+        public BusinessTypeEnum? BusinessType { get; set; }
+
+        /// <summary>
+        /// Defines ImporterCustomsReferenceType
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ImporterCustomsReferenceTypeEnum
+        {
+            /// <summary>
+            /// Enum VAT_NUMBER for value: VAT_NUMBER
+            /// </summary>
+            [EnumMember(Value = "VAT_NUMBER")]
+            VAT_NUMBER = 1,
+
+            /// <summary>
+            /// Enum IOSS_NUMBER for value: IOSS_NUMBER
+            /// </summary>
+            [EnumMember(Value = "IOSS_NUMBER")]
+            IOSS_NUMBER = 2,
+        }
+
+        /// <summary>
+        /// Gets or Sets ImporterCustomsReferenceType
+        /// </summary>
+        [DataMember(Name = "importerCustomsReferenceType", EmitDefaultValue = false)]
+        public ImporterCustomsReferenceTypeEnum? ImporterCustomsReferenceType { get; set; }
+
+
         /// <summary>
         /// Defines OtherType
         /// </summary>
@@ -77,7 +127,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets OtherType
         /// </summary>
-        [DataMember(Name="otherType", EmitDefaultValue=false)]
+        [DataMember(Name = "otherType", EmitDefaultValue = false)]
         public OtherTypeEnum? OtherType { get; set; }
         /// <summary>
         /// Defines ProducerSpecification
@@ -120,7 +170,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets ProducerSpecification
         /// </summary>
-        [DataMember(Name="producerSpecification", EmitDefaultValue=false)]
+        [DataMember(Name = "producerSpecification", EmitDefaultValue = false)]
         public ProducerSpecificationEnum? ProducerSpecification { get; set; }
         /// <summary>
         /// Defines ReasonForExport
@@ -193,7 +243,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets ReasonForExport
         /// </summary>
-        [DataMember(Name="reasonForExport", EmitDefaultValue=false)]
+        [DataMember(Name = "reasonForExport", EmitDefaultValue = false)]
         public ReasonForExportEnum? ReasonForExport { get; set; }
         /// <summary>
         /// Defines ShippingDocumentType
@@ -218,7 +268,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets ShippingDocumentType
         /// </summary>
-        [DataMember(Name="shippingDocumentType", EmitDefaultValue=false)]
+        [DataMember(Name = "shippingDocumentType", EmitDefaultValue = false)]
         public ShippingDocumentTypeEnum? ShippingDocumentType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomsInfo" /> class.
@@ -231,15 +281,19 @@ namespace shippingapi.Model
         /// <param name="eELPFC">eELPFC.</param>
         /// <param name="blanketEndDate">format: YYYY-MM-DD.</param>
         /// <param name="blanketStartDate">format: YYYY-MM-DD.</param>
+        /// <param name="businessType">businessType.</param>
         /// <param name="certificateNumber">certificateNumber.</param>
         /// <param name="comments">comments.</param>
         /// <param name="currencyCode">ISO-4217 (required).</param>
         /// <param name="customsDeclaredValue">customsDeclaredValue.</param>
         /// <param name="declarationStatement">declarationStatement.</param>
+        /// <param name="firstMileInsuredAmount">firstMileInsuredAmount.</param>
+        /// <param name="firstMileShippingAmount">firstMileShippingAmount.</param>
         /// <param name="freightCharge">freightCharge.</param>
         /// <param name="fromCustomsReference">fromCustomsReference.</param>
         /// <param name="handlingCosts">handlingCosts.</param>
         /// <param name="importerCustomsReference">importerCustomsReference.</param>
+        /// <param name="importerCustomsReferenceType">importerCustomsReferenceType.</param>
         /// <param name="insuredAmount">insuredAmount.</param>
         /// <param name="insuredNumber">insuredNumber.</param>
         /// <param name="invoiceNumber">invoiceNumber.</param>
@@ -248,14 +302,16 @@ namespace shippingapi.Model
         /// <param name="otherDescription">otherDescription.</param>
         /// <param name="otherType">otherType.</param>
         /// <param name="packingCosts">packingCosts.</param>
+        /// <param name="portOfClearance">portOfClearance.</param>
         /// <param name="producerSpecification">producerSpecification.</param>
         /// <param name="reasonForExport">reasonForExport.</param>
         /// <param name="reasonForExportExplanation">reasonForExportExplanation.</param>
         /// <param name="sdrValue">sdrValue.</param>
+        /// <param name="shippingAmount">shippingAmount.</param>
         /// <param name="shippingDocumentType">shippingDocumentType.</param>
         /// <param name="signatureContact">signatureContact.</param>
         /// <param name="termsOfSale">termsOfSale.</param>
-        public CustomsInfo(string eELPFC = default(string), string blanketEndDate = default(string), string blanketStartDate = default(string), string certificateNumber = default(string), string comments = default(string), string currencyCode = default(string), decimal customsDeclaredValue = default(decimal), string declarationStatement = default(string), decimal freightCharge = default(decimal), string fromCustomsReference = default(string), decimal handlingCosts = default(decimal), string importerCustomsReference = default(string), decimal insuredAmount = default(decimal), string insuredNumber = default(string), string invoiceNumber = default(string), string licenseNumber = default(string), decimal otherCharge = default(decimal), string otherDescription = default(string), OtherTypeEnum? otherType = default(OtherTypeEnum?), decimal packingCosts = default(decimal), ProducerSpecificationEnum? producerSpecification = default(ProducerSpecificationEnum?), ReasonForExportEnum? reasonForExport = default(ReasonForExportEnum?), string reasonForExportExplanation = default(string), decimal sdrValue = default(decimal), ShippingDocumentTypeEnum? shippingDocumentType = default(ShippingDocumentTypeEnum?), Address signatureContact = default(Address), string termsOfSale = default(string))
+        public CustomsInfo(string eELPFC = default(string), string blanketEndDate = default(string), string blanketStartDate = default(string), BusinessTypeEnum? businessType = default(BusinessTypeEnum), string certificateNumber = default(string), string comments = default(string), string currencyCode = default(string), decimal customsDeclaredValue = default(decimal), string declarationStatement = default(string), decimal firstMileInsuredAmount = default(decimal), decimal firstMileShippingAmount = default(decimal), decimal freightCharge = default(decimal), string fromCustomsReference = default(string), decimal handlingCosts = default(decimal), string importerCustomsReference = default(string), ImporterCustomsReferenceTypeEnum? importerCustomsReferenceType = default(ImporterCustomsReferenceTypeEnum), decimal insuredAmount = default(decimal), string insuredNumber = default(string), string invoiceNumber = default(string), string licenseNumber = default(string), decimal otherCharge = default(decimal), string otherDescription = default(string), OtherTypeEnum? otherType = default(OtherTypeEnum?), decimal packingCosts = default(decimal), string portOfClearance = default(string), ProducerSpecificationEnum? producerSpecification = default(ProducerSpecificationEnum?), ReasonForExportEnum? reasonForExport = default(ReasonForExportEnum?), string reasonForExportExplanation = default(string), decimal sdrValue = default(decimal), decimal shippingAmount = default(decimal), ShippingDocumentTypeEnum? shippingDocumentType = default(ShippingDocumentTypeEnum?), Address signatureContact = default(Address), string termsOfSale = default(string))
         {
             // to ensure "currencyCode" is required (not null)
             if (currencyCode == null)
@@ -266,18 +322,22 @@ namespace shippingapi.Model
             {
                 this.CurrencyCode = currencyCode;
             }
-            
+
             this.EELPFC = eELPFC;
             this.BlanketEndDate = blanketEndDate;
             this.BlanketStartDate = blanketStartDate;
+            this.BusinessType = businessType;
             this.CertificateNumber = certificateNumber;
             this.Comments = comments;
             this.CustomsDeclaredValue = customsDeclaredValue;
             this.DeclarationStatement = declarationStatement;
+            this.FirstMileInsuredAmount = firstMileInsuredAmount;
+            this.FirstMileShippingAmount = firstMileShippingAmount;
             this.FreightCharge = freightCharge;
             this.FromCustomsReference = fromCustomsReference;
             this.HandlingCosts = handlingCosts;
             this.ImporterCustomsReference = importerCustomsReference;
+            this.ImporterCustomsReferenceType = importerCustomsReferenceType;
             this.InsuredAmount = insuredAmount;
             this.InsuredNumber = insuredNumber;
             this.InvoiceNumber = invoiceNumber;
@@ -286,158 +346,199 @@ namespace shippingapi.Model
             this.OtherDescription = otherDescription;
             this.OtherType = otherType;
             this.PackingCosts = packingCosts;
+            this.PortOfClearance = portOfClearance;
             this.ProducerSpecification = producerSpecification;
             this.ReasonForExport = reasonForExport;
             this.ReasonForExportExplanation = reasonForExportExplanation;
             this.SdrValue = sdrValue;
+            this.ShippingAmount = shippingAmount;
             this.ShippingDocumentType = shippingDocumentType;
             this.SignatureContact = signatureContact;
             this.TermsOfSale = termsOfSale;
         }
-        
+
         /// <summary>
         /// Gets or Sets EELPFC
         /// </summary>
-        [DataMember(Name="EELPFC", EmitDefaultValue=false)]
+        [DataMember(Name = "EELPFC", EmitDefaultValue = false)]
         public string EELPFC { get; set; }
 
         /// <summary>
         /// format: YYYY-MM-DD
         /// </summary>
         /// <value>format: YYYY-MM-DD</value>
-        [DataMember(Name="blanketEndDate", EmitDefaultValue=false)]
+        [DataMember(Name = "blanketEndDate", EmitDefaultValue = false)]
         public string BlanketEndDate { get; set; }
 
         /// <summary>
         /// format: YYYY-MM-DD
         /// </summary>
         /// <value>format: YYYY-MM-DD</value>
-        [DataMember(Name="blanketStartDate", EmitDefaultValue=false)]
+        [DataMember(Name = "blanketStartDate", EmitDefaultValue = false)]
         public string BlanketStartDate { get; set; }
+
+       /* /// <summary>
+        /// Gets or Sets BusinessType
+        /// </summary>
+        [DataMember(Name = "businessType", EmitDefaultValue = false)]
+        public string BusinessType { get; set; }*/
 
         /// <summary>
         /// Gets or Sets CertificateNumber
         /// </summary>
-        [DataMember(Name="certificateNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "certificateNumber", EmitDefaultValue = false)]
         public string CertificateNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets Comments
         /// </summary>
-        [DataMember(Name="comments", EmitDefaultValue=false)]
+        [DataMember(Name = "comments", EmitDefaultValue = false)]
         public string Comments { get; set; }
 
         /// <summary>
         /// ISO-4217
         /// </summary>
         /// <value>ISO-4217</value>
-        [DataMember(Name="currencyCode", EmitDefaultValue=true)]
+        [DataMember(Name = "currencyCode", EmitDefaultValue = true)]
         public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Gets or Sets CustomsDeclaredValue
         /// </summary>
-        [DataMember(Name="customsDeclaredValue", EmitDefaultValue=false)]
+        [DataMember(Name = "customsDeclaredValue", EmitDefaultValue = false)]
         public decimal CustomsDeclaredValue { get; set; }
 
         /// <summary>
         /// Gets or Sets DeclarationStatement
         /// </summary>
-        [DataMember(Name="declarationStatement", EmitDefaultValue=false)]
+        [DataMember(Name = "declarationStatement", EmitDefaultValue = false)]
         public string DeclarationStatement { get; set; }
+
+        // <summary>
+        /// Gets or Sets FirstMileInsuredAmount
+        /// </summary>
+        [DataMember(Name = "firstMileInsuredAmount", EmitDefaultValue = false)]
+        public decimal FirstMileInsuredAmount { get; set; }
+
+        // <summary>
+        /// Gets or Sets FirstMileShippingAmount
+        /// </summary>
+        [DataMember(Name = "firstMileShippingAmount", EmitDefaultValue = false)]
+        public decimal FirstMileShippingAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets FreightCharge
         /// </summary>
-        [DataMember(Name="freightCharge", EmitDefaultValue=false)]
+        [DataMember(Name = "freightCharge", EmitDefaultValue = false)]
         public decimal FreightCharge { get; set; }
 
         /// <summary>
         /// Gets or Sets FromCustomsReference
         /// </summary>
-        [DataMember(Name="fromCustomsReference", EmitDefaultValue=false)]
+        [DataMember(Name = "fromCustomsReference", EmitDefaultValue = false)]
         public string FromCustomsReference { get; set; }
 
         /// <summary>
         /// Gets or Sets HandlingCosts
         /// </summary>
-        [DataMember(Name="handlingCosts", EmitDefaultValue=false)]
+        [DataMember(Name = "handlingCosts", EmitDefaultValue = false)]
         public decimal HandlingCosts { get; set; }
 
         /// <summary>
         /// Gets or Sets ImporterCustomsReference
         /// </summary>
-        [DataMember(Name="importerCustomsReference", EmitDefaultValue=false)]
+        [DataMember(Name = "importerCustomsReference", EmitDefaultValue = false)]
         public string ImporterCustomsReference { get; set; }
+
+     /*   /// <summary>
+        /// Gets or Sets ImporterCustomsReferenceType
+        /// </summary>
+        [DataMember(Name = "importerCustomsReferenceType", EmitDefaultValue = false)]
+        public string ImporterCustomsReferenceType { get; set; }*/
 
         /// <summary>
         /// Gets or Sets InsuredAmount
         /// </summary>
-        [DataMember(Name="insuredAmount", EmitDefaultValue=false)]
+        [DataMember(Name = "insuredAmount", EmitDefaultValue = false)]
         public decimal InsuredAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets InsuredNumber
         /// </summary>
-        [DataMember(Name="insuredNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "insuredNumber", EmitDefaultValue = false)]
         public string InsuredNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets InvoiceNumber
         /// </summary>
-        [DataMember(Name="invoiceNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "invoiceNumber", EmitDefaultValue = false)]
         public string InvoiceNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets LicenseNumber
         /// </summary>
-        [DataMember(Name="licenseNumber", EmitDefaultValue=false)]
+        [DataMember(Name = "licenseNumber", EmitDefaultValue = false)]
         public string LicenseNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets OtherCharge
         /// </summary>
-        [DataMember(Name="otherCharge", EmitDefaultValue=false)]
+        [DataMember(Name = "otherCharge", EmitDefaultValue = false)]
         public decimal OtherCharge { get; set; }
 
         /// <summary>
         /// Gets or Sets OtherDescription
         /// </summary>
-        [DataMember(Name="otherDescription", EmitDefaultValue=false)]
+        [DataMember(Name = "otherDescription", EmitDefaultValue = false)]
         public string OtherDescription { get; set; }
 
 
         /// <summary>
         /// Gets or Sets PackingCosts
         /// </summary>
-        [DataMember(Name="packingCosts", EmitDefaultValue=false)]
+        [DataMember(Name = "packingCosts", EmitDefaultValue = false)]
         public decimal PackingCosts { get; set; }
 
-
+        /// <summary>
+        /// Gets or Sets PortOfClearance
+        /// </summary>
+        [DataMember(Name = "portOfClearance", EmitDefaultValue = false)]
+        public string PortOfClearance { get; set; }
 
         /// <summary>
         /// Gets or Sets ReasonForExportExplanation
         /// </summary>
-        [DataMember(Name="reasonForExportExplanation", EmitDefaultValue=false)]
+        [DataMember(Name = "reasonForExportExplanation", EmitDefaultValue = false)]
         public string ReasonForExportExplanation { get; set; }
 
         /// <summary>
         /// Gets or Sets SdrValue
         /// </summary>
-        [DataMember(Name="sdrValue", EmitDefaultValue=false)]
+        [DataMember(Name = "sdrValue", EmitDefaultValue = false)]
         public decimal SdrValue { get; set; }
 
+        /// <summary>
+        /// Gets or Sets ShippingAmount
+        /// </summary>
+        [DataMember(Name = "shippingAmount", EmitDefaultValue = false)]
+        public decimal ShippingAmount { get; set; }
+
+      /*  // <summary>
+        /// Gets or Sets ShippingDocumentType
+        /// </summary>
+        [DataMember(Name = "shippingDocumentType", EmitDefaultValue = false)]
+        public string ShippingDocumentType { get; set; }*/
 
         /// <summary>
         /// Gets or Sets SignatureContact
         /// </summary>
-        [DataMember(Name="signatureContact", EmitDefaultValue=false)]
+        [DataMember(Name = "signatureContact", EmitDefaultValue = false)]
         public Address SignatureContact { get; set; }
 
         /// <summary>
         /// Gets or Sets TermsOfSale
         /// </summary>
-        [DataMember(Name="termsOfSale", EmitDefaultValue=false)]
+        [DataMember(Name = "termsOfSale", EmitDefaultValue = false)]
         public string TermsOfSale { get; set; }
 
         /// <summary>
@@ -451,15 +552,19 @@ namespace shippingapi.Model
             sb.Append("  EELPFC: ").Append(EELPFC).Append("\n");
             sb.Append("  BlanketEndDate: ").Append(BlanketEndDate).Append("\n");
             sb.Append("  BlanketStartDate: ").Append(BlanketStartDate).Append("\n");
+            sb.Append("  BusinessType: ").Append(BusinessType).Append("\n");
             sb.Append("  CertificateNumber: ").Append(CertificateNumber).Append("\n");
             sb.Append("  Comments: ").Append(Comments).Append("\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
             sb.Append("  CustomsDeclaredValue: ").Append(CustomsDeclaredValue).Append("\n");
             sb.Append("  DeclarationStatement: ").Append(DeclarationStatement).Append("\n");
+            sb.Append("  FirstMileInsuredAmount: ").Append(FirstMileInsuredAmount).Append("\n");
+            sb.Append("  FirstMileShippingAmount: ").Append(FirstMileShippingAmount).Append("\n");
             sb.Append("  FreightCharge: ").Append(FreightCharge).Append("\n");
             sb.Append("  FromCustomsReference: ").Append(FromCustomsReference).Append("\n");
             sb.Append("  HandlingCosts: ").Append(HandlingCosts).Append("\n");
             sb.Append("  ImporterCustomsReference: ").Append(ImporterCustomsReference).Append("\n");
+            sb.Append("  ImporterCustomsReferenceType: ").Append(ImporterCustomsReferenceType).Append("\n");
             sb.Append("  InsuredAmount: ").Append(InsuredAmount).Append("\n");
             sb.Append("  InsuredNumber: ").Append(InsuredNumber).Append("\n");
             sb.Append("  InvoiceNumber: ").Append(InvoiceNumber).Append("\n");
@@ -468,17 +573,19 @@ namespace shippingapi.Model
             sb.Append("  OtherDescription: ").Append(OtherDescription).Append("\n");
             sb.Append("  OtherType: ").Append(OtherType).Append("\n");
             sb.Append("  PackingCosts: ").Append(PackingCosts).Append("\n");
+            sb.Append("  PortOfClearance: ").Append(PortOfClearance).Append("\n");
             sb.Append("  ProducerSpecification: ").Append(ProducerSpecification).Append("\n");
             sb.Append("  ReasonForExport: ").Append(ReasonForExport).Append("\n");
             sb.Append("  ReasonForExportExplanation: ").Append(ReasonForExportExplanation).Append("\n");
             sb.Append("  SdrValue: ").Append(SdrValue).Append("\n");
+            sb.Append("  ShippingAmount: ").Append(ShippingAmount).Append("\n");
             sb.Append("  ShippingDocumentType: ").Append(ShippingDocumentType).Append("\n");
             sb.Append("  SignatureContact: ").Append(SignatureContact).Append("\n");
             sb.Append("  TermsOfSale: ").Append(TermsOfSale).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -508,137 +615,167 @@ namespace shippingapi.Model
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.EELPFC == input.EELPFC ||
                     (this.EELPFC != null &&
                     this.EELPFC.Equals(input.EELPFC))
-                ) && 
+                ) &&
                 (
                     this.BlanketEndDate == input.BlanketEndDate ||
                     (this.BlanketEndDate != null &&
                     this.BlanketEndDate.Equals(input.BlanketEndDate))
-                ) && 
+                ) &&
                 (
                     this.BlanketStartDate == input.BlanketStartDate ||
                     (this.BlanketStartDate != null &&
                     this.BlanketStartDate.Equals(input.BlanketStartDate))
-                ) && 
+                ) &&
+                (
+                    this.BusinessType == input.BusinessType ||
+                    (this.BusinessType != null &&
+                    this.BusinessType.Equals(input.BusinessType))
+                ) &&
                 (
                     this.CertificateNumber == input.CertificateNumber ||
                     (this.CertificateNumber != null &&
                     this.CertificateNumber.Equals(input.CertificateNumber))
-                ) && 
+                ) &&
                 (
                     this.Comments == input.Comments ||
                     (this.Comments != null &&
                     this.Comments.Equals(input.Comments))
-                ) && 
+                ) &&
                 (
                     this.CurrencyCode == input.CurrencyCode ||
                     (this.CurrencyCode != null &&
                     this.CurrencyCode.Equals(input.CurrencyCode))
-                ) && 
+                ) &&
                 (
                     this.CustomsDeclaredValue == input.CustomsDeclaredValue ||
                     (this.CustomsDeclaredValue != null &&
                     this.CustomsDeclaredValue.Equals(input.CustomsDeclaredValue))
-                ) && 
+                ) &&
                 (
                     this.DeclarationStatement == input.DeclarationStatement ||
                     (this.DeclarationStatement != null &&
                     this.DeclarationStatement.Equals(input.DeclarationStatement))
-                ) && 
+                ) &&
+                (
+                    this.FirstMileInsuredAmount == input.FirstMileInsuredAmount ||
+                    (this.FirstMileInsuredAmount != null &&
+                    this.FirstMileInsuredAmount.Equals(input.FirstMileInsuredAmount))
+                ) &&
+                (
+                    this.FirstMileShippingAmount == input.FirstMileShippingAmount ||
+                    (this.FirstMileShippingAmount != null &&
+                    this.FirstMileShippingAmount.Equals(input.FirstMileShippingAmount))
+                ) &&
                 (
                     this.FreightCharge == input.FreightCharge ||
                     (this.FreightCharge != null &&
                     this.FreightCharge.Equals(input.FreightCharge))
-                ) && 
+                ) &&
                 (
                     this.FromCustomsReference == input.FromCustomsReference ||
                     (this.FromCustomsReference != null &&
                     this.FromCustomsReference.Equals(input.FromCustomsReference))
-                ) && 
+                ) &&
                 (
                     this.HandlingCosts == input.HandlingCosts ||
                     (this.HandlingCosts != null &&
                     this.HandlingCosts.Equals(input.HandlingCosts))
-                ) && 
+                ) &&
                 (
                     this.ImporterCustomsReference == input.ImporterCustomsReference ||
                     (this.ImporterCustomsReference != null &&
                     this.ImporterCustomsReference.Equals(input.ImporterCustomsReference))
-                ) && 
+                ) &&
+                (
+                    this.ImporterCustomsReferenceType == input.ImporterCustomsReferenceType ||
+                    (this.ImporterCustomsReferenceType != null &&
+                    this.ImporterCustomsReferenceType.Equals(input.ImporterCustomsReferenceType))
+                ) &&
                 (
                     this.InsuredAmount == input.InsuredAmount ||
                     (this.InsuredAmount != null &&
                     this.InsuredAmount.Equals(input.InsuredAmount))
-                ) && 
+                ) &&
                 (
                     this.InsuredNumber == input.InsuredNumber ||
                     (this.InsuredNumber != null &&
                     this.InsuredNumber.Equals(input.InsuredNumber))
-                ) && 
+                ) &&
                 (
                     this.InvoiceNumber == input.InvoiceNumber ||
                     (this.InvoiceNumber != null &&
                     this.InvoiceNumber.Equals(input.InvoiceNumber))
-                ) && 
+                ) &&
                 (
                     this.LicenseNumber == input.LicenseNumber ||
                     (this.LicenseNumber != null &&
                     this.LicenseNumber.Equals(input.LicenseNumber))
-                ) && 
+                ) &&
                 (
                     this.OtherCharge == input.OtherCharge ||
                     (this.OtherCharge != null &&
                     this.OtherCharge.Equals(input.OtherCharge))
-                ) && 
+                ) &&
                 (
                     this.OtherDescription == input.OtherDescription ||
                     (this.OtherDescription != null &&
                     this.OtherDescription.Equals(input.OtherDescription))
-                ) && 
+                ) &&
                 (
                     this.OtherType == input.OtherType ||
                     (this.OtherType != null &&
                     this.OtherType.Equals(input.OtherType))
-                ) && 
+                ) &&
                 (
                     this.PackingCosts == input.PackingCosts ||
                     (this.PackingCosts != null &&
                     this.PackingCosts.Equals(input.PackingCosts))
-                ) && 
+                ) &&
+                (
+                    this.PortOfClearance == input.PortOfClearance ||
+                    (this.PortOfClearance != null &&
+                    this.PortOfClearance.Equals(input.PortOfClearance))
+                ) &&
                 (
                     this.ProducerSpecification == input.ProducerSpecification ||
                     (this.ProducerSpecification != null &&
                     this.ProducerSpecification.Equals(input.ProducerSpecification))
-                ) && 
+                ) &&
                 (
                     this.ReasonForExport == input.ReasonForExport ||
                     (this.ReasonForExport != null &&
                     this.ReasonForExport.Equals(input.ReasonForExport))
-                ) && 
+                ) &&
                 (
                     this.ReasonForExportExplanation == input.ReasonForExportExplanation ||
                     (this.ReasonForExportExplanation != null &&
                     this.ReasonForExportExplanation.Equals(input.ReasonForExportExplanation))
-                ) && 
+                ) &&
                 (
                     this.SdrValue == input.SdrValue ||
                     (this.SdrValue != null &&
                     this.SdrValue.Equals(input.SdrValue))
-                ) && 
+                ) &&
+                (
+                    this.ShippingAmount == input.ShippingAmount ||
+                    (this.ShippingAmount != null &&
+                    this.ShippingAmount.Equals(input.ShippingAmount))
+                ) &&
                 (
                     this.ShippingDocumentType == input.ShippingDocumentType ||
                     (this.ShippingDocumentType != null &&
                     this.ShippingDocumentType.Equals(input.ShippingDocumentType))
-                ) && 
+                ) &&
                 (
                     this.SignatureContact == input.SignatureContact ||
                     (this.SignatureContact != null &&
                     this.SignatureContact.Equals(input.SignatureContact))
-                ) && 
+                ) &&
                 (
                     this.TermsOfSale == input.TermsOfSale ||
                     (this.TermsOfSale != null &&
@@ -661,6 +798,8 @@ namespace shippingapi.Model
                     hashCode = hashCode * 59 + this.BlanketEndDate.GetHashCode();
                 if (this.BlanketStartDate != null)
                     hashCode = hashCode * 59 + this.BlanketStartDate.GetHashCode();
+                if (this.BusinessType != null)
+                    hashCode = hashCode * 59 + this.BusinessType.GetHashCode();
                 if (this.CertificateNumber != null)
                     hashCode = hashCode * 59 + this.CertificateNumber.GetHashCode();
                 if (this.Comments != null)
@@ -671,6 +810,10 @@ namespace shippingapi.Model
                     hashCode = hashCode * 59 + this.CustomsDeclaredValue.GetHashCode();
                 if (this.DeclarationStatement != null)
                     hashCode = hashCode * 59 + this.DeclarationStatement.GetHashCode();
+                if (this.FirstMileInsuredAmount != null)
+                    hashCode = hashCode * 59 + this.FirstMileInsuredAmount.GetHashCode();
+                if (this.FirstMileShippingAmount != null)
+                    hashCode = hashCode * 59 + this.FirstMileShippingAmount.GetHashCode();
                 if (this.FreightCharge != null)
                     hashCode = hashCode * 59 + this.FreightCharge.GetHashCode();
                 if (this.FromCustomsReference != null)
@@ -679,6 +822,8 @@ namespace shippingapi.Model
                     hashCode = hashCode * 59 + this.HandlingCosts.GetHashCode();
                 if (this.ImporterCustomsReference != null)
                     hashCode = hashCode * 59 + this.ImporterCustomsReference.GetHashCode();
+                if (this.ImporterCustomsReferenceType != null)
+                    hashCode = hashCode * 59 + this.ImporterCustomsReferenceType.GetHashCode();
                 if (this.InsuredAmount != null)
                     hashCode = hashCode * 59 + this.InsuredAmount.GetHashCode();
                 if (this.InsuredNumber != null)
@@ -695,6 +840,8 @@ namespace shippingapi.Model
                     hashCode = hashCode * 59 + this.OtherType.GetHashCode();
                 if (this.PackingCosts != null)
                     hashCode = hashCode * 59 + this.PackingCosts.GetHashCode();
+                if (this.PortOfClearance != null)
+                    hashCode = hashCode * 59 + this.PortOfClearance.GetHashCode();
                 if (this.ProducerSpecification != null)
                     hashCode = hashCode * 59 + this.ProducerSpecification.GetHashCode();
                 if (this.ReasonForExport != null)
@@ -703,6 +850,8 @@ namespace shippingapi.Model
                     hashCode = hashCode * 59 + this.ReasonForExportExplanation.GetHashCode();
                 if (this.SdrValue != null)
                     hashCode = hashCode * 59 + this.SdrValue.GetHashCode();
+                if (this.ShippingAmount != null)
+                    hashCode = hashCode * 59 + this.ShippingAmount.GetHashCode();
                 if (this.ShippingDocumentType != null)
                     hashCode = hashCode * 59 + this.ShippingDocumentType.GetHashCode();
                 if (this.SignatureContact != null)
