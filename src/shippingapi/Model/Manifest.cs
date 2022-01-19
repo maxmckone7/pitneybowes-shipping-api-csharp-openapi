@@ -52,7 +52,13 @@ namespace shippingapi.Model
             /// Enum PBPresort for value: PBPresort
             /// </summary>
             [EnumMember(Value = "PBPresort")]
-            PBPresort = 3
+            PBPresort = 3,
+
+            /// <summary>
+            /// Enum PBCS for value: PBCS
+            /// </summary>
+            [EnumMember(Value = "PBCS")]
+            PBCS = 4
 
         }
 

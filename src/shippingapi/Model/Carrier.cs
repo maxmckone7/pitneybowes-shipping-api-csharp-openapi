@@ -67,7 +67,13 @@ namespace shippingapi.Model
         /// Enum UPS for value: UPS
         /// </summary>
         [EnumMember(Value = "UPS")]
-        UPS = 6
+        UPS = 6,
+
+        /// <summary>
+        /// Enum PBCS for value: PBCS
+        /// </summary>
+        [EnumMember(Value = "PBCS")]
+        PBCS = 7
 
     }
 

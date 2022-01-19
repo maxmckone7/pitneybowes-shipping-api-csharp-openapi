@@ -45,10 +45,10 @@ namespace shippingapi.Client
             if (list.Count < 1)
             {
                 GenerateAndSetAccessToken(Configuration.OAuthApiKey, Configuration.OAuthSecret);
-                Parameter param = new Parameter();
-                param.Name = HttpRequestHeader.Authorization.ToString();
-                param.Value = "Bearer " + Configuration.AccessToken;
-                param.Type = ParameterType.HttpHeader;
+                Parameter param = new Parameter(HttpRequestHeader.Authorization.ToString(), "Bearer " + Configuration.AccessToken, ParameterType.HttpHeader);
+                //param.Name = HttpRequestHeader.Authorization.ToString();
+                //param.Value = "Bearer " + Configuration.AccessToken;
+                //param.Type = ParameterType.HttpHeader;
                 request.Parameters.Add(param);
             }
 
@@ -90,9 +90,9 @@ namespace shippingapi.Client
                             {
                                 request.Parameters.Remove(parameter);
 
-                                Parameter param = new Parameter();
-                                param.Name = HttpRequestHeader.Authorization.ToString();
-                                param.Value = "Bearer " + Configuration.AccessToken;
+                                Parameter param = new Parameter(HttpRequestHeader.Authorization.ToString(),"Bearer " + Configuration.AccessToken, ParameterType.HttpHeader);
+                                //param.Name = HttpRequestHeader.Authorization.ToString();
+                                //param.Value = "Bearer " + Configuration.AccessToken;
 
                                 request.Parameters.Add(param);
 
@@ -196,10 +196,10 @@ namespace shippingapi.Client
                 request.AddParameter(param.Key, param.Value);
 
             // add file parameter, if any
-            foreach(var param in fileParams)
-            {
-                request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentType);
-            }
+            //foreach(var param in fileParams)
+            //{
+              //  request.AddFile(param.Value.Name, param.Value, param.Value.FileName, param.Value.ContentType);
+            //}
 
             if (postBody != null) // http body (model or byte[]) parameter
             {
